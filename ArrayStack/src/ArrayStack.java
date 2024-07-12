@@ -7,10 +7,11 @@
 /**
  *
  * @author ramma
+ * @param <T>
  */
 public class ArrayStack<T> {
     private int top;
-    private T[] stack;
+    private final T[] stack;
     private final int MAX = 100;
     
     public ArrayStack(){
@@ -26,6 +27,7 @@ public class ArrayStack<T> {
     
     public T pop(){
         T result = stack[top-1];
+        stack[top-1] = null;
         top--;
         return result;
     }
