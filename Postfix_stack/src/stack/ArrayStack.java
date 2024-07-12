@@ -42,7 +42,7 @@ public class ArrayStack<T> {
     }
     public void displayStack(){
         for(int i = 0; i < top; i++){
-            System.out.print(stack[i]);
+            System.out.print(stack[i] + " ");
         }
     }
 }
