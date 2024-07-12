@@ -25,12 +25,18 @@ public class ArrayStack<T> {
     }
     
     public T pop(){
-        T result = stack[top];
+        T result = stack[top-1];
         top--;
         return result;
     }
     
     public T peek(){
-        return stack[top];
+        return stack[top-1];
+    }
+    
+    public void displayStack(){
+        for(int i = 0; i < top; i++){
+            System.out.println(stack[i]);
+        }
     }
 }
