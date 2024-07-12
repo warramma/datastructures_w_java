@@ -12,5 +12,11 @@
 public class testArrayStack {
     public static void main(String[] args){
         ArrayStack<Integer> intstack = new ArrayStack<>();
+        
+        intstack.push(5);
+        intstack.push(4);
+        intstack.push(3);
+        
+        System.out.println(intstack.peek());
     }
 }
