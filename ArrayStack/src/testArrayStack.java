@@ -18,8 +18,9 @@ public class testArrayStack {
         intstack.push(3);
         
         System.out.println("peek: " + intstack.peek());
-        
+        intstack.displayStack();
         System.out.println("pop: " + intstack.pop());
         System.out.println("peek: " + intstack.peek());
+        intstack.displayStack();
     }
 }
