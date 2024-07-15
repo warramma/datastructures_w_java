@@ -12,6 +12,8 @@ public interface StackADT<T> {
     public void push(T elem);
     public T pop();
     public T peek();
-    public void display();
-    public void displayreverse();
+    @Override
+    public String toString();
+    public boolean isEmpty();
+    public int size();
 }
