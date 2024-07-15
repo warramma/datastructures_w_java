@@ -12,27 +12,27 @@ public class Node<T> {
     private T element;
     private Node<T> next;
     private Node<T> previous;
-    public Node (T element){
-        element = null;
+    public Node (T elem){
+        element = elem;
         next = null;
         previous = null;
     }
     public void setElement(T elem){
-        element = elem;
+        this.element = elem;
     }
     public T getElement(){
-        return element;
+        return this.element;
     }
     
     public void setNext(Node<T> node){
-        next = node;
+        this.next = node;
     }
     public Node<T> getNext(){
-        return next;
+        return this.next;
     }
     
     public void setPrevious(Node<T> node){
-        previous = node;
+        this.previous = node;
     }
     public Node<T> getPrevious(){
         return previous;
