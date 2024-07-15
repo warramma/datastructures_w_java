@@ -11,58 +11,46 @@
 public class LinkedStack<T> implements StackADT<T> {
     private Node<T> top;
     private int count;
-    public LinkedStack(){
-        top = null;
-        count = 0;
-    }
 
     @Override
     public void push(T elem) {
-        Node<T> element = new Node<>(elem);
-        Node<T> current = top;
-        while(current.getNext()!=null){
-            current = current.getNext();
-        }
-        current.setNext(element);
-        element.setPrevious(current);
-        element.setNext(null);
+        Node<T> temp = new Node<>(elem);
+        temp.setNext(top);
+        top = temp;
+        count++;
     }
 
     @Override
     public T pop() {
-        Node<T> last = top;
-        while(last.getNext()!=null){
-            last = last.getNext();
-        }
-        Node<T> previous = last.getPrevious();
-        previous.setNext(null);
-        return last.getElement();
+        T result = top.getElement();
+        top = top.getNext();
+        count--;
+        return result;
     }
 
     @Override
     public T peek() {
-        Node<T> last = top;
-        while(last.getNext()!=null){
-            last = last.getNext();
-        }
-        return last.getElement();
+        return top.getElement();
     }
 
     @Override
-    public void display() {
-        Node<T> current = top;
-        while(current.getNext()!=null){
-            System.out.print(current.getElement()+ " ");
-        }
+    public boolean isEmpty() {
+        return count == 0;
     }
+
     @Override
-    public void displayreverse(){
-        Node<T> last = top;
-        while(last.getNext()!= null){
-            last=last.getNext();
+    public int size() {
+        return count;
+    }
+    
+    @Override
+    public String toString(){
+        String result = "Stack: ";
+        Node<T> current = top;
+        while(current!=null){
+            result = result + current.getElement() + " ";
+            current = current.getNext();
         }
-        while(last.getPrevious()!=null){
-            System.out.print(last.getElement() + " ");
-        }
+        return result;
     }
 }
