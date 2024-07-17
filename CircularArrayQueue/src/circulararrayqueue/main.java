@@ -16,6 +16,19 @@ public class main {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        CircularArrayQueue<Integer> intqueue = new CircularArrayQueue<>();
+        
+        intqueue.queue(1);
+        intqueue.queue(2);
+        intqueue.queue(3);
+        intqueue.queue(4);
+        
+        System.out.println(intqueue.toString());
+        System.out.println(intqueue.size());
+        System.out.println("first = " + intqueue.first());
+        
+        intqueue.dequeue();
+        System.out.println(intqueue.toString());
     }
     
 }

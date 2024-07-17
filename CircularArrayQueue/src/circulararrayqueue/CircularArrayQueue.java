@@ -11,33 +11,66 @@ package circulararrayqueue;
  * @param <T>
  */
 public class CircularArrayQueue<T> implements QueueADT<T>{
-
+    private int front, rear, count;
+    private T[] queue;
+    private final int DEFAULT_CAPACITY = 100;
+    
+    public CircularArrayQueue(){
+        queue = (T[])(new Object[DEFAULT_CAPACITY]);
+        front = rear = 0;
+        count = 0;
+    }
     @Override
     public void queue(T elem) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if(size()== queue.length){
+            expandCapacity();
+        }
+        queue[rear] = elem;
+        count++;
+        rear = (rear + 1) % queue.length;
     }
 
     @Override
     public T dequeue() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        T result = queue[front];
+        count--;
+        front = (front + 1) % queue.length;
+        return result;
     }
 
     @Override
     public T first() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return queue[front];
     }
 
     @Override
     public int size() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return count;
     }
 
     @Override
     public boolean isEmpty() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return count == 0;
     }
     @Override
     public String toString(){
-        return "";
+        String result = "";
+        int current = front;
+        while(current != rear){
+            result = result + queue[current] + " ";
+            current = (current + 1) % queue.length;
+        }
+        return result;
     };
+    
+    private void expandCapacity(){
+        T[] larger = (T[])(new Object[queue.length * 2]);
+        for(int scan = 0; scan < count; scan++){
+            larger[scan] = queue[front];
+            front = (front+1) % queue.length;
+        }
+        front = 0;
+        rear = count;
+        queue = larger;
+    }
 }
