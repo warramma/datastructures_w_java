@@ -11,34 +11,71 @@ package main;
  * @param <T>
  */
 public class LinkedQueue<T> implements LinkedQueueADT<T> {
-
+    private LinearNode<T> first, last;
+    private int count;
+    
+    public LinkedQueue(){
+        first = last = null;
+        count = 0;
+    }
+    
     @Override
     public void queue(T elem) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        LinearNode<T> temp = new LinearNode<>(elem);
+        if(count == 0){
+            temp.setNext(null);
+            first = last = temp;
+        }
+        else{
+            temp.setNext(last);
+            last = temp;
+        }
+        count++;
     }
 
     @Override
     public T dequeue() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        T result = first.getElement();
+        if(count == 1){
+            first = last = null;
+        }
+        else{
+            LinearNode<T> current = last;
+            while(current.getNext()!= first){
+                current = current.getNext();
+            }
+            current.setNext(null);
+            first = current;
+        }
+        
+        count--;
+        return result;
     }
 
     @Override
     public T first() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return first.getElement();
     }
 
     @Override
     public int size() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return count;
     }
 
     @Override
     public boolean isEmpty() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return count == 0;
     }
     
     @Override
     public String toString(){
-        return "";
+        String result = "";
+        LinearNode<T> current = last;
+        while(current != null){
+            result = result + current.getElement() + " ";
+            current = current.getNext();
+        }
+        result = result + "<- first";
+        return result;
     };
 }
